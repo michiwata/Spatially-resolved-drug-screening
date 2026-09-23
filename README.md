@@ -103,7 +103,7 @@ python -m src.01_preprocess export-wide \
     --sample-id GSM6433585_092A \
     --cmap-signatures data/raw/CMap/BC_gene_expression_signatures_mas5.txt \
     --mapping-dir data/gene_mappings \
-    --out-root results \
+    --out-root data/processed \
     --leiden-resolution 0.6 \
     --random-state 0
 ```
