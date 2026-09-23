@@ -36,15 +36,16 @@ pip install -r requirements.txt
 .
 ├── data/                       # Input data and reference metadata
 │   ├── gene_mappings/          # Downloaded from NCBI and HGNC databases (i.e., hgnc_complete_set.txt, gene2ensembl.gz, and gene_history.gz)
-│   ├── raw/
+│   ├── processed/              # Generated in the step 1
+│   └── raw/
 │       ├── CMap/               # Downloaded CMap signature matrices (e.g., mas5.txt)
-│       ├── GEO/                # Downloaded raw Visium data (e.g., H5, tissue images)
-│   ├── processed/
-├── results/                    # Generated outputs and figure renderings
-│   ├── analysis/               # Analysis outputs (scores, tables, run_summary.md)
+│       └── GEO/                # Downloaded raw Visium data (e.g., H5, tissue images)
+├── results/                    
+│   └── analysis/               # Analysis outputs (scores, tables, run_summary.md)
 ├── src/                        # CLI scripts and pipeline submodules
 │   ├── 01_preprocess.py        # CLI for raw data discovery and CMap-wide formatting
-│   ├── 02_analyze.py           # CLI for standardized spatial screening analysis
+│   ├── analysis/               # Submodules supporting the main pipeline
+│   ├── preprocessing/
 │   └── analysis/               # Submodules supporting the main pipeline
 │       ├── pipeline.py         # Core analysis execution function
 │       ├── conditions.py, figures.py, outputs.py, scoring.py, signatures.py, tables.py, types.py
