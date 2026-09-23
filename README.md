@@ -10,20 +10,23 @@ This repository contains the Python code for data analysis and figure generation
 > Zetian Song, Keitaro Izumi, and Michio Iwata
 
 ## Requirements
-The following environment is required to run the analysis:
+This pipeline requires **Python 3.10+** (due to modern type hinting and dataclass features) and relies on standard spatial transcriptomics analysis libraries.
 
-- Python 3.8+
-- numpy >= 1.21.0
-- pandas >= 1.3.0
-- matplotlib >= 3.4.0
+**Key Dependencies:**
+- `scanpy` (for Leiden clustering and spatial data handling)
+- `anndata` / `h5py` (for reading 10x Visium `.h5` matrices)
+- `pandas` / `numpy` / `scipy` (for core data manipulation and scoring)
+- `matplotlib` / `seaborn` (for rendering figures)
 
-After cloning the repository, install the required packages using the following commands:
+**Installation:**
+It is recommended to use a virtual environment (e.g., `venv` or `conda`). Clone the repository and install the required packages using the provided `requirements.txt`:
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
+git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
 cd your-repo-name
 pip install -r requirements.txt
 ```
+*(If you are using Conda, you may prefer to install `scanpy` and its dependencies via `conda install -c conda-forge scanpy` before running pip.)*
 
 ## Repository Structure
 ```text
