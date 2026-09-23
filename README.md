@@ -14,6 +14,8 @@ This pipeline requires **Python 3.10+** (due to modern type hinting and dataclas
 
 **Key Dependencies:**
 - `scanpy` (for Leiden clustering and spatial data handling)
+- `scikit-misc` (required by scanpy for high-variance gene selection)
+- `leidenalg` (required for community detection and clustering)
 - `anndata` / `h5py` (for reading 10x Visium `.h5` matrices)
 - `pandas` / `numpy` / `scipy` (for core data manipulation and scoring)
 - `matplotlib` / `seaborn` (for rendering figures)
@@ -26,6 +28,7 @@ git clone [https://github.com/yourusername/your-repo-name.git](https://github.co
 cd your-repo-name
 pip install -r requirements.txt
 ```
+
 *(If you are using Conda, you may prefer to install `scanpy` and its dependencies via `conda install -c conda-forge scanpy` before running pip.)*
 
 ## Repository Structure
