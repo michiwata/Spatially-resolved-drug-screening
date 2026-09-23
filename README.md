@@ -100,7 +100,7 @@ python -m src.01_preprocess audit-raw \
 python -m src.01_preprocess export-wide \
     --raw-root data/raw/GEO/GSM6433585 \
     --sample-id GSM6433585_092A \
-    --cmap-signatures data/raw/BC_gene_expression_signatures_mas5.txt \
+    --cmap-signatures data/raw/CMap/BC_gene_expression_signatures_mas5.txt \
     --mapping-dir data/gene_mappings \
     --out-root results \
     --leiden-resolution 0.6 \
