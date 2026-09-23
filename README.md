@@ -73,6 +73,18 @@ python scripts/01_preprocess.py export-wide \
 ```
 *(Optional arguments: `--keep-out-of-tissue` to retain out-of-tissue spots, or `--counts-tsv` to use a small fixture dataset instead of the 10x H5 file.)*
 
+**Example Command:**
+```bash
+python scripts/01_preprocess.py export-wide \
+    --raw-root data/raw/geo/GSM6433585 \
+    --sample-id GSM6433585_092A \
+    --cmap-signatures data/raw/BC_gene_expression_signatures_mas5.txt \
+    --mapping-dir data/processed/gene_mappings/ \
+    --out-root data/processed/ \
+    --leiden-resolution 0.6 \
+    --random-state 0
+```
+
 ### 2. Main Analysis (`02_analyze.py`)
 Performs analysis using the XX model on the preprocessed data.
 ```bash
