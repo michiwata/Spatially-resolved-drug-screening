@@ -81,7 +81,7 @@ For the preprocessing script to successfully detect and process a Visium sample,
 
 **To export a specific sample as a CMap-wide spot table:**
 ```bash
-python src/01_preprocess.py export-wide \
+python -m src.01_preprocess export-wide \
     --raw-root data/raw_geo_dir \
     --sample-id  \
     --cmap-signatures data/cmap_signatures.gmt \
@@ -97,8 +97,8 @@ python src/01_preprocess.py export-wide \
 python -m src.01_preprocess audit-raw \
     --raw-root data/raw/GEO/GSM6433585/
 
-python src/01_preprocess.py export-wide \
-    --raw-root data/raw/geo/GSM6433585 \
+python -m src.01_preprocess export-wide \
+    --raw-root data/raw/GEO/GSM6433585 \
     --sample-id GSM6433585_092A \
     --cmap-signatures data/raw/BC_gene_expression_signatures_mas5.txt \
     --mapping-dir data/gene_mappings \
