@@ -28,15 +28,23 @@ pip install -r requirements.txt
 ## Repository Structure
 ```text
 .
-├── data/               # Directory for raw and intermediate data
-│   ├── row/
-│   ├── processed/
-├── results/            # Directory for output results (figures and tables)
-├── src/            # Analysis scripts
-│   ├── 01_preprocess.py
-│   ├── 02_analyze.py
-│   └── 03_plot_results.py
-├── requirements.txt    # List of required Python packages
+├── data/                       # Input data and reference metadata
+│   ├── external/geo/           # Downloaded raw Visium data (e.g., H5, tissue images)
+│   ├── reference/              # Canonical drug labels and spot/cluster metadata
+│   └── restricted/             # CMap signature matrices (e.g., mas5.txt)
+├── results/                    # Generated outputs and figure renderings
+│   ├── output/analysis/        # Analysis outputs (scores, tables, run_summary.md)
+│   └── output/figures/         # Final rendered manuscript figures
+├── scripts/                    # CLI scripts and pipeline submodules
+│   ├── 01_preprocess.py        # CLI for raw data discovery and CMap-wide formatting
+│   ├── 02_analyze.py           # CLI for standardized spatial screening analysis
+│   ├── 03_plot_results.py      # CLI for figure generation
+│   └── analysis/               # Submodules supporting the main pipeline
+│       ├── pipeline.py         # Core analysis execution function
+│       ├── conditions.py, figures.py, outputs.py, scoring.py, signatures.py, tables.py, types.py
+├── analysis.example.toml       # Example configuration for 02_analyze.py
+├── figures.example.toml        # Example configuration for 03_plot_results.py
+├── requirements.txt            # Python dependencies
 └── README.md
 ```
 
@@ -153,7 +161,7 @@ Upon successful execution of the entire pipeline (Steps 1-3), the following key 
 
 *   **3. Figure Outputs (`results/output/figures/`)**
     *   Rendered image files (e.g., PNG/PDF formats) representing the manuscript figures (Figures 1-5), including spatial cluster maps, ROC/PR curves, and drug rank-change plots.
-    *   
+
 ## Citation
 To be updated.
 
