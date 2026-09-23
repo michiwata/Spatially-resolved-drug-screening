@@ -57,7 +57,7 @@ pip install -r requirements.txt
 
 
 ## Usage / Pipeline
-The analysis is divided into three steps. Please execute the scripts in numerical order.
+The analysis is divided into two steps. Please execute the scripts in numerical order.
 
 ### 1. Data Preprocessing (`01_preprocess.py`)
 This script handles the initial preprocessing of spatial transcriptomics (10x Visium) raw data. It maps the spatial coordinates, performs Leiden clustering using Scanpy, and integrates Connectivity Map (CMap) signatures to evaluate each tissue spot. Finally, it exports the processed data as a comprehensive, wide-format spot table (CMap-wide spot table) ready for downstream virtual screening.
@@ -146,7 +146,7 @@ The main analysis relies on several specialized submodules within the `src/analy
 
 
 ## Expected Output
-Upon successful execution of the entire pipeline (Steps 1, 2), the following key directories and files will be generated in your specified output paths:
+Upon successful execution of the entire pipeline (Steps 1 and 2), the following key directories and files will be generated in your specified output paths:
 
 *   **1. Preprocessing Outputs (e.g., `data/processed/`)**
     *   `*__spot_by_gene__cmapwide.tsv`: The comprehensive spatial expression matrix integrating CMap signatures and Leiden clusters.
