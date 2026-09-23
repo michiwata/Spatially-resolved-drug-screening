@@ -44,9 +44,16 @@ pip install -r requirements.txt
 The analysis is divided into three steps. Please execute the scripts in numerical order.
 
 ### 1. Data Preprocessing (`01_preprocess.py`)
-### 1. Data Preprocessing (`01_preprocess.py`)
-This script processes raw Visium data and exports it as CMap-wide spot tables, including Leiden clustering. It provides two main subcommands: `audit-raw` and `export-wide`.
+This script handles the initial preprocessing of spatial transcriptomics (10x Visium) raw data. It maps the spatial coordinates, performs Leiden clustering using Scanpy, and integrates Connectivity Map (CMap) signatures to evaluate each tissue spot. Finally, it exports the processed data as a comprehensive, wide-format spot table (CMap-wide spot table) ready for downstream virtual screening.
 
+The script provides two main subcommands depending on your goal:
+
+* **`audit-raw` (Data Discovery):** 
+  Scans a specified local directory (e.g., downloaded GEO data) to automatically discover available Visium RAW samples. It outputs a list of sample IDs along with their essential file paths (H5 expression matrix, spatial positions, and scale factors).
+  
+* **`export-wide` (Main Processing):** 
+  Executes the core preprocessing pipeline for a specific sample. It loads the H5 data and spatial metadata, runs Leiden clustering, applies the specified CMap gene signatures, and exports the fully integrated data as a wide-format text file.
+  
 **To list discoverable Visium RAW samples in a GEO directory:**
 ```bash
 python scripts/01_preprocess.py audit-raw \
