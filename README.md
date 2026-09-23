@@ -4,7 +4,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 ## Overview
-This repository contains the Python code for data analysis and figure generation used in the following paper:
+This repository contains the Python code for data analysis used in the following paper:
 
 > **"Spatially resolved transcriptomic correlation improves the prediction of anticancer drug candidates"**  
 > Zetian Song, Keitaro Izumi, and Michio Iwata
@@ -39,11 +39,9 @@ pip install -r requirements.txt
 │   ├── processed/
 ├── results/                    # Generated outputs and figure renderings
 │   ├── analysis/               # Analysis outputs (scores, tables, run_summary.md)
-│   └── figures/                # Final rendered manuscript figures
 ├── src/                        # CLI scripts and pipeline submodules
 │   ├── 01_preprocess.py        # CLI for raw data discovery and CMap-wide formatting
 │   ├── 02_analyze.py           # CLI for standardized spatial screening analysis
-│   ├── 03_plot_results.py      # CLI for figure generation
 │   └── analysis/               # Submodules supporting the main pipeline
 │       ├── pipeline.py         # Core analysis execution function
 │       ├── conditions.py, figures.py, outputs.py, scoring.py, signatures.py, tables.py, types.py
@@ -142,47 +140,18 @@ The main analysis relies on several specialized submodules within the `src/analy
 *   **`tables.py`**: Provides utility functions for data I/O, such as reading TSVs, extracting required columns, and writing text files.
 *   **`types.py`**: Defines essential data classes (e.g., `StandardizedAnalysisConfig`) and hardcoded constants used in the manuscript (e.g., cluster IDs, compound counts).
 
-### 3. Result Visualization (`03_plot_results.py`)
-This script generates the final figures (and related data representations) for the manuscript based on the results from the main analysis pipeline. Similar to the analysis step, it is driven by a TOML configuration file that links the intermediate analysis outputs, spatial metadata, and high-resolution tissue images to the figure generation submodule.
-
-**To generate the figures:**
-```bash
-python -m src.03_plot_results --config figures.example.toml
-```
-
-**Example Configuration (`figures.example.toml`):**
-```toml
-[figures]
-analysis_dir = "./results/analysis"
-spot_obs = "./data/processed/GSM6433585_092A/spot_obs.tsv"
-cluster_color = "./data/GSM6433585_092A__cluster_color_map.tsv"
-outdir = "./results/figures"
-figure1_static = "./data/fig1_overview.png"
-tissue_image = "./data/raw/GEO/GSM6433585/GSM6433585_092A_tissue_hires_image.png"
-```
-
-*(Upon successful execution, the script will render the figure pack and print the path to the specified `outdir` in the console.)*
-
-**Submodules:**
-The  analysis also relies on several specialized submodules within the `src/analysis/` directory to modularize the workflow:
-
-*   **`figures.py`**
-*   **`types.py`**
 
 ## Expected Output
-Upon successful execution of the entire pipeline (Steps 1-3), the following key directories and files will be generated in your specified output paths:
+Upon successful execution of the entire pipeline (Steps 1, 2), the following key directories and files will be generated in your specified output paths:
 
-*   **1. Preprocessing Outputs (e.g., `data/generated/.../wide/`)**
+*   **1. Preprocessing Outputs (e.g., `data/processed/`)**
     *   `*__spot_by_gene__cmapwide.tsv`: The comprehensive spatial expression matrix integrating CMap signatures and Leiden clusters.
 
-*   **2. Analysis Outputs (`results/output/analysis/`)**
+*   **2. Analysis Outputs (`results/analysis/`)**
     *   `run_summary.md`: An automated summary report detailing the run parameters and manuscript constants.
     *   `whole_slice_drug_scores.tsv` & `cluster_drug_scores.tsv`: The calculated drug reversal tendency (cosine) scores for the whole tissue and per cluster.
     *   `spatial_best_cluster_drug_scores.tsv`: Aggregated best scores across spatial clusters.
     *   Various benchmarking and candidate selection tables (e.g., Figure 5 top-50 candidates).
-
-*   **3. Figure Outputs (`results/output/figures/`)**
-    *   Rendered image files (e.g., PNG/PDF formats) representing the manuscript figures (Figures 1-5), including spatial cluster maps, ROC/PR curves, and drug rank-change plots.
 
 ## Citation
 To be updated.
