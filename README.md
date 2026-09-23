@@ -72,6 +72,12 @@ The script provides two main subcommands depending on your goal:
 python -m src.01_preprocess audit-raw \
     --raw-root data/raw_geo_dir/
 ```
+For the preprocessing script to successfully detect and process a Visium sample, the specified raw directory (e.g., `data/raw/GEO/GSM6433585/`) must contain the following standard Space Ranger output files:
+
+*   `*_filtered_feature_bc_matrix.h5` (Expression matrix)
+*   `*_tissue_positions_list.csv.gz` or `.csv` (Spot coordinates)
+*   `*_scalefactors_json.json.gz` or `.json` (Scale factors)
+*   `*_tissue_hires_image.png` (High-resolution tissue image)
 
 **To export a specific sample as a CMap-wide spot table:**
 ```bash
