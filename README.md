@@ -108,8 +108,8 @@ outdir = "../results/output/analysis"
 
 *(Note: This pipeline relies on submodules within the `analysis/` directory (e.g., `scoring.py`, `figures.py`). Upon successful execution, it outputs the analysis results, Figure 5 candidate tables, and a `run_summary.md` to the specified `outdir`.)*
 
-**Submodules (`src/analysis/`)**
-The main analysis pipeline (`02_analyze.py` and `pipeline.py`) relies on several specialized submodules within the `analysis/` directory to modularize the workflow:
+**Submodules:**
+The main analysis relies on several specialized submodules within the `src/analysis/` directory to modularize the workflow:
 
 *   **`conditions.py`**: Normalizes experimental conditions (e.g., duration, platform) and builds the condition bank for drug perturbations.
 *   **`figures.py`**: Prepares and exports the specific candidate tables required for Manuscript Figure 5.
@@ -120,16 +120,40 @@ The main analysis pipeline (`02_analyze.py` and `pipeline.py`) relies on several
 *   **`types.py`**: Defines essential data classes (e.g., `StandardizedAnalysisConfig`) and hardcoded constants used in the manuscript (e.g., cluster IDs, compound counts).
 
 ### 3. Result Visualization (`03_plot_results.py`)
-Generates Figure 1 and Figure 2 for the paper based on the analysis results.
+This script generates the final figures (and related data representations) for the manuscript based on the results from the main analysis pipeline. Similar to the analysis step, it is driven by a TOML configuration file that links the intermediate analysis outputs, spatial metadata, and high-resolution tissue images to the figure generation submodule.
+
+**To generate the figures:**
 ```bash
-python scripts/03_plot_results.py --input results/analysis_summary.json --outdir results/figures/
+python scripts/03_plot_results.py --config path/to/figures.example.toml
 ```
 
-## Expected Output
-Upon successful execution, the following files will be generated in the `results/figures/` directory:
-- `figure_1_distribution.png`
-- `figure_2_correlation.pdf`
+**Example Configuration (`figures.example.toml`):**
+```toml
+[figures]
+analysis_dir = "../results/output/analysis"
+spot_obs = "../data/reference/GSM6433585/spot_obs.tsv"
+cluster_color = "../data/reference/GSM6433585/GSM6433585_092A__cluster_color_map.tsv"
+outdir = "../results/output/figures"
+figure1_static = "../results/reference/figures/fig1_overview.png"
+tissue_image = "../data/external/geo/GSM6433585/GSM6433585_092A_tissue_hires_image.png"
+```
+*(Upon successful execution, the script will render the figure pack and print the path to the specified `outdir` in the console.)*
 
+## Expected Output
+Upon successful execution of the entire pipeline (Steps 1-3), the following key directories and files will be generated in your specified output paths:
+
+*   **1. Preprocessing Outputs (e.g., `data/generated/.../wide/`)**
+    *   `*__spot_by_gene__cmapwide.tsv`: The comprehensive spatial expression matrix integrating CMap signatures and Leiden clusters.
+
+*   **2. Analysis Outputs (`results/output/analysis/`)**
+    *   `run_summary.md`: An automated summary report detailing the run parameters and manuscript constants.
+    *   `whole_slice_drug_scores.tsv` & `cluster_drug_scores.tsv`: The calculated drug reversal tendency (cosine) scores for the whole tissue and per cluster.
+    *   `spatial_best_cluster_drug_scores.tsv`: Aggregated best scores across spatial clusters.
+    *   Various benchmarking and candidate selection tables (e.g., Figure 5 top-50 candidates).
+
+*   **3. Figure Outputs (`results/output/figures/`)**
+    *   Rendered image files (e.g., PNG/PDF formats) representing the manuscript figures (Figures 1-5), including spatial cluster maps, ROC/PR curves, and drug rank-change plots.
+    *   
 ## Citation
 To be updated.
 
