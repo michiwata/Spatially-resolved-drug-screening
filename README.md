@@ -115,27 +115,27 @@ To ensure reproducibility, this script is entirely driven by a TOML configuratio
 
 **To run the analysis:**
 ```bash
-python src/02_analyze.py --config path/to/analysis.example.toml
+python -m src.02_analyze --config analysis.example.toml
 ```
 
 **Example Configuration (`analysis.example.toml`):**
 ```toml
 [analysis]
-drug_matrix = "../data/restricted/cmap_build_02/BC_gene_expression_signatures_mas5.txt"
-drug_labels = "../data/reference/canonical_relabelled_drug_table.tsv"
-wide_tsv = "../data/generated/GSM6433585_092A/wide/GSM6433585_092A__spot_by_gene__cmapwide.tsv"
-spot_obs = "../data/reference/GSM6433585/spot_obs.tsv"
-cluster_color = "../data/reference/GSM6433585/GSM6433585_092A__cluster_color_map.tsv"
-outdir = "../results/output/analysis"
+drug_matrix = "./data/raw/CMap/BC_gene_expression_signatures_mas5.txt"
+drug_labels = "./data/canonical_relabelled_drug_table.tsv"
+wide_tsv = "./data/processed/GSM6433585_092A/wide/GSM6433585_092A__spot_by_gene__cmapwide.tsv"
+spot_obs = "./data/processed/GSM6433585_092A/spot_obs.tsv"
+cluster_color = "./data/GSM6433585_092A__cluster_color_map.tsv"
+outdir = "./results/analysis"
 ```
 
-*(Note: This pipeline relies on submodules within the `analysis/` directory (e.g., `scoring.py`, `figures.py`). Upon successful execution, it outputs the analysis results, Figure 5 candidate tables, and a `run_summary.md` to the specified `outdir`.)*
+*(Note: This pipeline relies on submodules within the `analysis/` directory (e.g., `scoring.py`, `figures.py`). Upon successful execution, it outputs the analysis results to the specified `outdir`.)*
 
 **Submodules:**
 The main analysis relies on several specialized submodules within the `src/analysis/` directory to modularize the workflow:
 
 *   **`conditions.py`**: Normalizes experimental conditions (e.g., duration, platform) and builds the condition bank for drug perturbations.
-*   **`figures.py`**: Prepares and exports the specific candidate tables required for Manuscript Figure 5.
+*   **`figures.py`**: Acts as a central orchestrator that calls individual submodules (e.g., `Figures_fig1.py`) to render the manuscript figures.
 *   **`outputs.py`**: Manages the data structures (`AnalysisOutputs`) and handles the exporting of final analysis results.
 *   **`scoring.py`**: The core computational module. It calculates drug reversal scores, aggregates spatial best scores, and computes benchmark metrics and rank changes.
 *   **`signatures.py`**: Computes disease signatures based on spatial gene expression and manages retained cluster IDs.
