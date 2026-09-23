@@ -1,7 +1,7 @@
 [analysis]
-drug_matrix = "../data/restricted/cmap_build_02/BC_gene_expression_signatures_mas5.txt"
-drug_labels = "../data/reference/canonical_relabelled_drug_table.tsv"
-wide_tsv = "../data/generated/GSM6433585_092A/wide/GSM6433585_092A__spot_by_gene__cmapwide.tsv"
-spot_obs = "../data/reference/GSM6433585/spot_obs.tsv"
-cluster_color = "../data/reference/GSM6433585/GSM6433585_092A__cluster_color_map.tsv"
-outdir = "../results/output/analysis"
+drug_matrix = "./data/raw/CMap/BC_gene_expression_signatures_mas5.txt"
+drug_labels = "./data/canonical_relabelled_drug_table.tsv"
+wide_tsv = "./data/processed/GSM6433585_092A/wide/GSM6433585_092A__spot_by_gene__cmapwide.tsv"
+spot_obs = "./data/processed/GSM6433585_092A/spot_obs.tsv"
+cluster_color = "./data/GSM6433585_092A__cluster_color_map.tsv"
+outdir = "./results/analysis"
