@@ -34,12 +34,12 @@ pip install -r requirements.txt
 ├── data/                       # Input data and reference metadata
 │   ├── raw/
 │       ├── CMap/               # Downloaded CMap signature matrices (e.g., mas5.txt)
-│       ├── GEO/                 # Downloaded raw Visium data (e.g., H5, tissue images)
+│       ├── GEO/                # Downloaded raw Visium data (e.g., H5, tissue images)
 │   ├── processed/
 ├── results/                    # Generated outputs and figure renderings
 │   ├── analysis/               # Analysis outputs (scores, tables, run_summary.md)
 │   └── figures/                # Final rendered manuscript figures
-├── src/                    # CLI scripts and pipeline submodules
+├── src/                        # CLI scripts and pipeline submodules
 │   ├── 01_preprocess.py        # CLI for raw data discovery and CMap-wide formatting
 │   ├── 02_analyze.py           # CLI for standardized spatial screening analysis
 │   ├── 03_plot_results.py      # CLI for figure generation
