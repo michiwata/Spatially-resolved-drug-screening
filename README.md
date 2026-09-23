@@ -147,19 +147,20 @@ This script generates the final figures (and related data representations) for t
 
 **To generate the figures:**
 ```bash
-python scripts/03_plot_results.py --config path/to/figures.example.toml
+python -m src.03_plot_results --config figures.example.toml
 ```
 
 **Example Configuration (`figures.example.toml`):**
 ```toml
 [figures]
-analysis_dir = "../results/output/analysis"
-spot_obs = "../data/reference/GSM6433585/spot_obs.tsv"
-cluster_color = "../data/reference/GSM6433585/GSM6433585_092A__cluster_color_map.tsv"
-outdir = "../results/output/figures"
-figure1_static = "../results/reference/figures/fig1_overview.png"
-tissue_image = "../data/external/geo/GSM6433585/GSM6433585_092A_tissue_hires_image.png"
+analysis_dir = "./results/analysis"
+spot_obs = "./data/processed/GSM6433585_092A/spot_obs.tsv"
+cluster_color = "./data/GSM6433585_092A__cluster_color_map.tsv"
+outdir = "./results/figures"
+figure1_static = "./data/fig1_overview.png"
+tissue_image = "./data/raw/GEO/GSM6433585/GSM6433585_092A_tissue_hires_image.png"
 ```
+
 *(Upon successful execution, the script will render the figure pack and print the path to the specified `outdir` in the console.)*
 
 **Submodules:**
