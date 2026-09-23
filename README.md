@@ -108,7 +108,7 @@ outdir = "../results/output/analysis"
 
 *(Note: This pipeline relies on submodules within the `analysis/` directory (e.g., `scoring.py`, `figures.py`). Upon successful execution, it outputs the analysis results, Figure 5 candidate tables, and a `run_summary.md` to the specified `outdir`.)*
 
-## Submodules (`src/analysis/`)
+**Submodules (`src/analysis/`)**
 The main analysis pipeline (`02_analyze.py` and `pipeline.py`) relies on several specialized submodules within the `analysis/` directory to modularize the workflow:
 
 *   **`conditions.py`**: Normalizes experimental conditions (e.g., duration, platform) and builds the condition bank for drug perturbations.
