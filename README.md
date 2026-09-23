@@ -108,6 +108,17 @@ outdir = "../results/output/analysis"
 
 *(Note: This pipeline relies on submodules within the `analysis/` directory (e.g., `scoring.py`, `figures.py`). Upon successful execution, it outputs the analysis results, Figure 5 candidate tables, and a `run_summary.md` to the specified `outdir`.)*
 
+## Submodules (`src/analysis/`)
+The main analysis pipeline (`02_analyze.py` and `pipeline.py`) relies on several specialized submodules within the `analysis/` directory to modularize the workflow:
+
+*   **`conditions.py`**: Normalizes experimental conditions (e.g., duration, platform) and builds the condition bank for drug perturbations.
+*   **`figures.py`**: Prepares and exports the specific candidate tables required for Manuscript Figure 5.
+*   **`outputs.py`**: Manages the data structures (`AnalysisOutputs`) and handles the exporting of final analysis results.
+*   **`scoring.py`**: The core computational module. It calculates drug reversal scores, aggregates spatial best scores, and computes benchmark metrics and rank changes.
+*   **`signatures.py`**: Computes disease signatures based on spatial gene expression and manages retained cluster IDs.
+*   **`tables.py`**: Provides utility functions for data I/O, such as reading TSVs, extracting required columns, and writing text files.
+*   **`types.py`**: Defines essential data classes (e.g., `StandardizedAnalysisConfig`) and hardcoded constants used in the manuscript (e.g., cluster IDs, compound counts).
+
 ### 3. Result Visualization (`03_plot_results.py`)
 Generates Figure 1 and Figure 2 for the paper based on the analysis results.
 ```bash
