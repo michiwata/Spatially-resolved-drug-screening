@@ -150,6 +150,12 @@ tissue_image = "../data/external/geo/GSM6433585/GSM6433585_092A_tissue_hires_ima
 ```
 *(Upon successful execution, the script will render the figure pack and print the path to the specified `outdir` in the console.)*
 
+**Submodules:**
+The  analysis also relies on several specialized submodules within the `src/analysis/` directory to modularize the workflow:
+
+*   **`figures.py`**:
+*   **`types.py`**:
+
 ## Expected Output
 Upon successful execution of the entire pipeline (Steps 1-3), the following key directories and files will be generated in your specified output paths:
 
