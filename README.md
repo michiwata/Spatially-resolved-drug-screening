@@ -32,6 +32,7 @@ pip install -r requirements.txt
 ```text
 .
 ├── data/                       # Input data and reference metadata
+│   ├── gene_mappings/          # Downloaded from NCBI and HGNC databases (i.e., hgnc_complete_set.txt, gene2ensembl.gz, and gene_history.gz)
 │   ├── raw/
 │       ├── CMap/               # Downloaded CMap signature matrices (e.g., mas5.txt)
 │       ├── GEO/                # Downloaded raw Visium data (e.g., H5, tissue images)
