@@ -7,9 +7,7 @@
 This repository contains the Python code for data analysis used in the following paper:
 
 > **"Spatially resolved transcriptomic correlation improves the prediction of anticancer drug candidates"**  
-> Author 1, Author 2, ...  
-> *Journal Name*, 202X.  
-> [Paper Link (DOI or arXiv URL)](https://doi.org/...)
+> Zetian Song, Keitaro Izumi, and Michio Iwata
 
 ## Requirements
 The following environment is required to run the analysis:
@@ -31,8 +29,10 @@ pip install -r requirements.txt
 ```text
 .
 ├── data/               # Directory for raw and intermediate data
+│   ├── row/
+│   ├── processed/
 ├── results/            # Directory for output results (figures and tables)
-├── scripts/            # Analysis scripts
+├── src/            # Analysis scripts
 │   ├── 01_preprocess.py
 │   ├── 02_analyze.py
 │   └── 03_plot_results.py
@@ -44,10 +44,27 @@ pip install -r requirements.txt
 The analysis is divided into three steps. Please execute the scripts in numerical order.
 
 ### 1. Data Preprocessing (`01_preprocess.py`)
-Loads the raw data, imputes missing values, and performs normalization.
+### 1. Data Preprocessing (`01_preprocess.py`)
+This script processes raw Visium data and exports it as CMap-wide spot tables, including Leiden clustering. It provides two main subcommands: `audit-raw` and `export-wide`.
+
+**To list discoverable Visium RAW samples in a GEO directory:**
 ```bash
-python scripts/01_preprocess.py --input data/raw_data.csv --output data/processed_data.csv
+python scripts/01_preprocess.py audit-raw \
+    --raw-root data/raw_geo_dir/
 ```
+
+**To export a specific sample as a CMap-wide spot table:**
+```bash
+python scripts/01_preprocess.py export-wide \
+    --raw-root data/raw_geo_dir/ \
+    --sample-id  \
+    --cmap-signatures data/cmap_signatures.gmt \
+    --mapping-dir data/mapping_dir/ \
+    --out-root results/preprocessed/ \
+    --leiden-resolution 0.6 \
+    --random-state 0
+```
+*(Optional arguments: `--keep-out-of-tissue` to retain out-of-tissue spots, or `--counts-tsv` to use a small fixture dataset instead of the 10x H5 file.)*
 
 ### 2. Main Analysis (`02_analyze.py`)
 Performs analysis using the XX model on the preprocessed data.
