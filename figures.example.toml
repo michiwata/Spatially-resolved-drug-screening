@@ -1,7 +1,0 @@
-[figures]
-analysis_dir = "../results/output/analysis"
-spot_obs = "../data/reference/GSM6433585/spot_obs.tsv"
-cluster_color = "../data/reference/GSM6433585/GSM6433585_092A__cluster_color_map.tsv"
-outdir = "../results/output/figures"
-figure1_static = "../results/reference/figures/fig1_overview.png"
-tissue_image = "../data/external/geo/GSM6433585/GSM6433585_092A_tissue_hires_image.png"
