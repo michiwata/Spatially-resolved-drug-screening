@@ -86,7 +86,9 @@ python src/01_preprocess.py export-wide \
 ```
 
 ### 2. Main Analysis (`02_analyze.py`)
-This script executes the standardized virtual screening and analysis pipeline. To ensure reproducibility, it uses a TOML configuration file rather than relying on complex command-line arguments. The configuration file specifies all necessary input paths, including the CMap-wide spot table generated in the previous step, along with drug reference matrices and metadata.
+This script executes the standardized spatial virtual screening pipeline[cite: 3, 5]. It calculates disease signatures and drug reversal tendency scores (cosine similarity) for both the whole tissue and specific Leiden clusters[cite: 5]. The pipeline also automatically generates the benchmarking metrics and candidate tables required for Manuscript Figures 3, 4, and 5[cite: 5].
+
+To ensure reproducibility, this script is entirely driven by a TOML configuration file rather than complex command-line arguments[cite: 3]. This configuration links the CMap-wide spot table (generated in Step 1) with CMap drug reference matrices and spatial metadata[cite: 4].
 
 **To run the analysis:**
 ```bash
@@ -103,7 +105,8 @@ spot_obs = "../data/reference/GSM6433585/spot_obs.tsv"
 cluster_color = "../data/reference/GSM6433585/GSM6433585_092A__cluster_color_map.tsv"
 outdir = "../results/output/analysis"
 ```
-*(Upon successful execution, the script will print the path to the specified `outdir` in the console.)*
+
+*(Note: This pipeline relies on submodules within the `analysis/` directory (e.g., `scoring.py`, `figures.py`)[cite: 5]. Upon successful execution, it outputs the analysis results, Figure 5 candidate tables, and a `run_summary.md` to the specified `outdir`[cite: 3, 5].)*
 
 ### 3. Result Visualization (`03_plot_results.py`)
 Generates Figure 1 and Figure 2 for the paper based on the analysis results.
