@@ -32,13 +32,14 @@ pip install -r requirements.txt
 ```text
 .
 ├── data/                       # Input data and reference metadata
-│   ├── external/geo/           # Downloaded raw Visium data (e.g., H5, tissue images)
-│   ├── reference/              # Canonical drug labels and spot/cluster metadata
-│   └── restricted/             # CMap signature matrices (e.g., mas5.txt)
+│   ├── raw/
+│       ├── CMap/               # Downloaded CMap signature matrices (e.g., mas5.txt)
+│       ├── GEO/                 # Downloaded raw Visium data (e.g., H5, tissue images)
+│   ├── processed/
 ├── results/                    # Generated outputs and figure renderings
-│   ├── output/analysis/        # Analysis outputs (scores, tables, run_summary.md)
-│   └── output/figures/         # Final rendered manuscript figures
-├── scripts/                    # CLI scripts and pipeline submodules
+│   ├── analysis/               # Analysis outputs (scores, tables, run_summary.md)
+│   └── figures/                # Final rendered manuscript figures
+├── src/                    # CLI scripts and pipeline submodules
 │   ├── 01_preprocess.py        # CLI for raw data discovery and CMap-wide formatting
 │   ├── 02_analyze.py           # CLI for standardized spatial screening analysis
 │   ├── 03_plot_results.py      # CLI for figure generation
@@ -50,6 +51,7 @@ pip install -r requirements.txt
 ├── requirements.txt            # Python dependencies
 └── README.md
 ```
+
 
 ## Usage / Pipeline
 The analysis is divided into three steps. Please execute the scripts in numerical order.
