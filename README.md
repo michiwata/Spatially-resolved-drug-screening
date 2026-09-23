@@ -69,7 +69,7 @@ The script provides two main subcommands depending on your goal:
   
 **To list discoverable Visium RAW samples in a GEO directory:**
 ```bash
-python src/01_preprocess.py audit-raw \
+python -m src.01_preprocess audit-raw \
     --raw-root data/raw_geo_dir/
 ```
 
@@ -88,6 +88,9 @@ python src/01_preprocess.py export-wide \
 
 **Example Command:**
 ```bash
+python -m src.01_preprocess audit-raw \
+    --raw-root data/raw/GEO/GSM6433585/
+
 python src/01_preprocess.py export-wide \
     --raw-root data/raw/geo/GSM6433585 \
     --sample-id GSM6433585_092A \
