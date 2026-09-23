@@ -4,7 +4,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 ## Overview
-This repository contains the Python code for data analysis used in the following paper:
+This repository contains the Python code for data analysis and figure generation used in the following paper:
 
 > **"Spatially resolved transcriptomic correlation improves the prediction of anticancer drug candidates"**  
 > Zetian Song, Keitaro Izumi, and Michio Iwata
@@ -86,10 +86,24 @@ python src/01_preprocess.py export-wide \
 ```
 
 ### 2. Main Analysis (`02_analyze.py`)
-Performs analysis using the XX model on the preprocessed data.
+This script executes the standardized virtual screening and analysis pipeline. To ensure reproducibility, it uses a TOML configuration file rather than relying on complex command-line arguments. The configuration file specifies all necessary input paths, including the CMap-wide spot table generated in the previous step, along with drug reference matrices and metadata.
+
+**To run the analysis:**
 ```bash
-python scripts/02_analyze.py --input data/processed_data.csv --output results/analysis_summary.json
+python scripts/02_analyze.py --config path/to/analysis.example.toml
 ```
+
+**Example Configuration (`analysis.example.toml`):**
+```toml
+[analysis]
+drug_matrix = "../data/restricted/cmap_build_02/BC_gene_expression_signatures_mas5.txt"
+drug_labels = "../data/reference/canonical_relabelled_drug_table.tsv"
+wide_tsv = "../data/generated/GSM6433585_092A/wide/GSM6433585_092A__spot_by_gene__cmapwide.tsv"
+spot_obs = "../data/reference/GSM6433585/spot_obs.tsv"
+cluster_color = "../data/reference/GSM6433585/GSM6433585_092A__cluster_color_map.tsv"
+outdir = "../results/output/analysis"
+```
+*(Upon successful execution, the script will print the path to the specified `outdir` in the console.)*
 
 ### 3. Result Visualization (`03_plot_results.py`)
 Generates Figure 1 and Figure 2 for the paper based on the analysis results.
