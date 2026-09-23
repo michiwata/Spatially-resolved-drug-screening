@@ -56,18 +56,18 @@ The script provides two main subcommands depending on your goal:
   
 **To list discoverable Visium RAW samples in a GEO directory:**
 ```bash
-python scripts/01_preprocess.py audit-raw \
+python src/01_preprocess.py audit-raw \
     --raw-root data/raw_geo_dir/
 ```
 
 **To export a specific sample as a CMap-wide spot table:**
 ```bash
-python scripts/01_preprocess.py export-wide \
-    --raw-root data/raw_geo_dir/ \
+python src/01_preprocess.py export-wide \
+    --raw-root data/raw_geo_dir \
     --sample-id  \
     --cmap-signatures data/cmap_signatures.gmt \
-    --mapping-dir data/mapping_dir/ \
-    --out-root results/preprocessed/ \
+    --mapping-dir data/mapping_dir \
+    --out-root results \
     --leiden-resolution 0.6 \
     --random-state 0
 ```
@@ -75,12 +75,12 @@ python scripts/01_preprocess.py export-wide \
 
 **Example Command:**
 ```bash
-python scripts/01_preprocess.py export-wide \
+python src/01_preprocess.py export-wide \
     --raw-root data/raw/geo/GSM6433585 \
     --sample-id GSM6433585_092A \
     --cmap-signatures data/raw/BC_gene_expression_signatures_mas5.txt \
-    --mapping-dir data/processed/gene_mappings/ \
-    --out-root data/processed/ \
+    --mapping-dir data/gene_mappings \
+    --out-root results \
     --leiden-resolution 0.6 \
     --random-state 0
 ```
